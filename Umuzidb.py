@@ -61,8 +61,8 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS `Umuzi`.`Payments` (
   CONSTRAINT `fk_CustomerID`
     FOREIGN KEY (`CustomerID`)
     REFERENCES `Umuzi`.`Customers` (`CustomerID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = latin1;""")
@@ -84,7 +84,7 @@ DEFAULT CHARACTER SET = latin1;""")
 cursor.execute("SELECT * FROM Customers")
 records = cursor.fetchall()
 
-print ("Printing each row's column values i.e.  developer record")
+
 for row in records:
     print("CustomerID = ", row[0], )
     print("FirstName = ", row[1])
@@ -102,43 +102,48 @@ for row in records:
 cursor.execute("SELECT FirstName, LastName FROM Customers")
 records = cursor.fetchall()
 
-print ("Printing each row's column values i.e.  developer record")
+
 for row in records:
     print("FirstName = ", row[0], )
     print("LastName = ", row[1])
-    
     print(" ")
+
+print("9. Show the name of the Customer whose CustomerID is 1.")
+cursor.execute("SELECT * FROM Customers WHERE CustomerID = 1")
+records = cursor.fetchall()
+
+for row in records:
+    print("FirstName = ", row[1], )
+    print("LastName = ", row[2])
+    print(" ")
+
+print("10.  UPDATE the record for CustomerID =1  on the Customer table so that the name is Lerato Mabitso.")
+
+cursor.execute("UPDATE Customers SET FirstName = 'Lerato', LastName = 'Mabitso' WHERE CustomerID = 1 ")
+cursor.execute("SELECT * FROM Customers WHERE CustomerID = 1")
+records = cursor.fetchall()
+for row in records:
+    print("FirstName = ", row[1], )
+    print("LastName = ", row[2])
+    print(" ")
+
+print("11.  DELETE the record from the Customers table for customer 2 (CustomerID = 2).")
+cursor.execute("DELETE FROM Customers WHERE CustomerID = 2 ")
+cursor.execute("SELECT * FROM Customers")
+records = cursor.fetchall()
+
+
+for row in records:
+    print("CustomerID = ", row[0], )
+    print("FirstName = ", row[1])
+    print("LastName  = ", row[2])
+    print("Gender  = ", row[3])
+    print("Address  = ", row[4])
+    print("Phone  = ", row[5])
+    print("Email  = ", row[6])
+    print("City  = ", row[7])
+    print("Country  = ", row[8])
+    print(" ")
+
+
 cursor.close()
-
- 
-#9. 	Show the name of the Customer whose CustomerID is 1.
- 
-10.  UPDATE the record for CustomerID =1  on the Customer table so that the name is “Lerato Mabitso”.
- 
-11.  DELETE the record from the Customers table for customer 2 (CustomerID = 2).
- 
-12.  Select all unique values from the table Products.
- 
-13.  Return the MAXIMUM payment made on the PAYMENTS table.
- 
-14.  Create a query that selects all customers from the "Customers" table, sorted by the "Country" column.
- 
-15.  Create a query that selects all Products with a price BETWEEN R100 and R600.
- 
-16.  Create a query that selects all fields from "Customers" where country is "Germany" AND city is "Berlin".
- 
-17.  Create a query that selects all fields from "Customers" where city is "Cape Town" OR "Durban".
- 
-18.  Select all records from Products where the Price is GREATER than R500.
- 
-19.  Return the sum of the Amounts on the Payments table.
- 
-20.  Count the number of shipped orders in the Orders table.
-
-21.  Return the average price of all Products, in Rands and in Dollars (assume the exchange rate is R12 to the Dollar).
- 
-22.  Using INNER JOIN create a query that selects all Orders with Customer information.
- 
-23.  Document what information is stored in your database. Be sure to say what information is kept in what table, and which keys link the records between tables.
-
-  
