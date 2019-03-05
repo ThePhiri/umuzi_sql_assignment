@@ -145,5 +145,105 @@ for row in records:
     print("Country  = ", row[8])
     print(" ")
 
+print("12.  Select all unique values from the table Products.")
+cursor.execute("SELECT DISTINCT ProductID, ProductName, Description, BuyPrice FROM Products")
+records = cursor.fetchall()
+
+for row in records:
+    print("ProductID = ", row[0], )
+    print("ProductName = ", row[1])
+    print("Description  = ", row[2])
+    print("BuyPrice  = ", row[3])
+
+
+print("13.  Return the MAXIMUM payment made on the PAYMENTS table.")
+cursor.execute("SELECT MAX(Amount) FROM Payments")
+records = cursor.fetchall()
+for row in records:
+    print("Max amount = ", row[0], )
+
+print("14. Create a query that selects all customers from the Customers table, sorted by the Country column.")
+cursor.execute("SELECT * FROM Customers ORDER BY Country ")
+records = cursor.fetchall()
+
+
+for row in records:
+    print("CustomerID = ", row[0], )
+    print("FirstName = ", row[1])
+    print("LastName  = ", row[2])
+    print("Gender  = ", row[3])
+    print("Address  = ", row[4])
+    print("Phone  = ", row[5])
+    print("Email  = ", row[6])
+    print("City  = ", row[7])
+    print("Country  = ", row[8])
+    print(" ")
+
+print("15. Create a query that selects all Products with a price BETWEEN R100 and R600.")
+cursor.execute("SELECT * FROM Products WHERE BuyPrice BETWEEN 100 AND 600")
+records = cursor.fetchall()
+
+for row in records:
+    print("ProductID = ", row[0], )
+    print("ProductName = ", row[1])
+    print("Description  = ", row[2])
+    print("BuyPrice  = ", row[3])
+
+
+print("16.  Create a query that selects all fields from Customers where country is Germany AND city is Berlin")
+cursor.execute("SELECT * FROM Customers WHERE Country = 'Germany' AND City = 'Berlin'")
+records = cursor.fetchall()
+for row in records:
+    print("CustomerID = ", row[0], )
+    print("FirstName = ", row[1])
+    print("LastName  = ", row[2])
+    print("Gender  = ", row[3])
+    print("Address  = ", row[4])
+    print("Phone  = ", row[5])
+    print("Email  = ", row[6])
+    print("City  = ", row[7])
+    print("Country  = ", row[8])
+    print(" ")
+
+print("17. Create a query that selects all fields from Customers where city is Cape Town OR Durban")
+cursor.execute("SELECT * FROM Customers WHERE City = 'Cape Town' OR City = 'Durban'")
+records = cursor.fetchall()
+for row in records:
+    print("CustomerID = ", row[0], )
+    print("FirstName = ", row[1])
+    print("LastName  = ", row[2])
+    print("Gender  = ", row[3])
+    print("Address  = ", row[4])
+    print("Phone  = ", row[5])
+    print("Email  = ", row[6])
+    print("City  = ", row[7])
+    print("Country  = ", row[8])
+    print(" ")
+
+
+print("18. Select all records from Products where the Price is GREATER than R500.")
+cursor.execute("SELECT * FROM Products WHERE BuyPrice > '500'")
+records = cursor.fetchall()
+
+for row in records:
+    print("ProductID = ", row[0], )
+    print("ProductName = ", row[1])
+    print("Description  = ", row[2])
+    print("BuyPrice  = ", row[3])
+    print(" ")
+
+print("19. Return the sum of the Amounts on the Payments table.")
+cursor.execute("SELECT SUM(Amount) FROM Payments")
+records = cursor.fetchall()
+for row in records:
+    print("Sum = ", row[0], )
+
+
+print("20.  Count the number of shipped orders in the Orders table.")
+cursor.execute("SELECT count(Status) FROM Orders WHERE Status = 'SHIPPED'")
+records = cursor.fetchall()
+for row in records:
+    print("Count = ", row[0], )
+
 
 cursor.close()
