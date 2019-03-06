@@ -245,5 +245,16 @@ records = cursor.fetchall()
 for row in records:
     print("Count = ", row[0], )
 
+print("21. Return the average price of all Products, in Rands and in Dollars (assume the exchange rate is R12 to the Dollar).")
+cursor.execute("SELECT AVG(BuyPrice) FROM Products")
+records = cursor.fetchall()
+
+for row in records:
+    print("Average Buy Price = ", row[0], )
+    print(" ")
+
+print("22.  Using INNER JOIN create a query that selects all Orders with Customer information.")
+cursor.execute("SELECT * FROM Payments INNER JOIN Customers ON Customers.CustomerID = Payments.CustomerID ")
+print(cursor.fetchall())
 
 cursor.close()
